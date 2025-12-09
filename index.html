@@ -370,71 +370,6 @@
       color: #9b8890;
       margin-top: 8px
     }
-    /* Fix for mobile inspect view */
-@media (max-width: 480px) {
-
-  body {
-    overflow-x: hidden !important;
-  }
-
-  h1 {
-    font-size: 1.8rem !important;
-    padding: 0 10px;
-    margin-top: 20px;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
-  }
-
-  .gallery img {
-    height: 130px !important;
-    border-radius: 8px !important;
-  }
-
-  .section {
-    padding: 10px !important;
-    width: 95% !important;
-  }
-
-  p {
-    font-size: 1rem !important;
-    line-height: 1.6 !important;
-  }
-
-  .btn {
-    width: 100% !important;
-    font-size: 1rem !important;
-    padding: 10px 0 !important;
-  }
-
-  .lightbox img {
-    width: 95% !important;
-  }
-}
-
-
-/* your original code here */
-
-/* paste this at the BOTTOM */
-@media (max-width: 480px) {
-  .container, .main, .wrapper, .box, .card, .birthday-box {
-      max-width: 100% !important;
-      width: 100% !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      border-radius: 0 !important;
-  }
-
-  body {
-      padding: 0 !important;
-      margin: 0 !important;
-      background: #fff !important;
-  }
-}
-</style>
-
   </style>
 </head>
 
@@ -464,11 +399,17 @@
             <div class="controls">
               <button class="btn" id="openBtn">Open Surprise 🎁</button>
               <button class="btn secondary" id="musicToggle">Play Music</button>
-              <button class="btn secondary" id="musicToggle1"> Touch Me</button>
-                 <button class="btn secondary" id="musicToggle2">Look here</button>
+              
 
-              <button class="small" id="confettiBtn">Party Hearts</button>
+             
             </div>
+            <div class="controls">
+            <button class="btn secondary" id="musicToggle1"> Touch Me</button>
+                 <button class="btn secondary" id="musicToggle2">Look here</button>
+                  </div>
+                    <div class="controls">
+                  <button class="small" id="confettiBtn">Party Hearts</button>
+                   </div>
           </div>
         </div>
         <!-- 
