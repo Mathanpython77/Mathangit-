@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday ❤️</title>
+  <style>
+    :root{
+      --bg1:#ffecd2;
+      --bg2:#fcb69f;
+      --accent:#ff4d6d;
+      --card:#fffdf8;
+      --glass: rgba(255,255,255,0.7);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    body{
+      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      display:flex;align-items:center;justify-content:center;padding:2rem;
+    }
+    .stage{
+      width:min(1000px,95%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+      border-radius:20px;padding:28px;box-shadow:0 10px 40px rgba(0,0,0,0.12);position:relative;overflow:hidden
+    }
+
+    header{display:flex;gap:20px;align-items:center}
+    .logo{width:72px;height:72px;border-radius:14px;background:var(--card);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+
+    .title{flex:1}
+    h1{margin:0;font-size:28px}
+    p.lead{margin:6px 0 0;color:#6b5b6b}
+
+    .content{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:18px}
+
+    /* left: big card */
+    .card{background:linear-gradient(180deg,var(--glass),rgba(255,255,255,0.9));border-radius:14px;padding:20px;min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .cake{width:180px;height:180px;border-radius:14px;background:linear-gradient(0deg,#fff8f0,#fff0f5);display:flex;align-items:center;justify-content:center;position:relative}
+    .candles{position:absolute;top:8px;display:flex;gap:6px}
+    .candle{width:8px;height:26px;background:linear-gradient(#ffd8d8,#ff8b8b);border-radius:3px;position:relative}
+    .flame{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff, #ffd55a 40%, #ff8b00)}
+
+    .message{margin-top:18px;font-size:18px}
+    .reveal{margin-top:18px}
+    .btn{display:inline-block;padding:10px 18px;border-radius:12px;background:var(--accent);color:white;text-decoration:none;font-weight:600;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--accent);border:2px solid rgba(255,77,109,0.12)}
+
+    /* right pane */
+    .side{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.88));box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)}
+    .photo{width:100%;height:220px;border-radius:10px;background-size:cover;background-position:center;margin-bottom:12px}
+    .note{font-size:14px;color:#6b5b6b}
+
+    /* confetti hearts */
+    .heart{position:absolute;top:-40px;left:50%;width:22px;height:20px;opacity:0.95;transform-origin:center;animation:fall 5s linear infinite}
+    @keyframes fall{0%{transform:translateY(-20vh) rotate(0) scale(0.8);opacity:1}100%{transform:translateY(120vh) rotate(540deg) scale(1.1);opacity:0}}
+
+    /* surprise overlay */
+    .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);z-index:40;opacity:0;pointer-events:none;transition:all .3s}
+    .overlay.show{opacity:1;pointer-events:auto}
+    .surprise{background:white;border-radius:14px;padding:28px;max-width:720px;width:94%;text-align:center}
+    .surprise h2{margin:0 0 8px}
+    .surprise p{color:#5d4b5b}
+
+    /* responsive */
+    @media (max-width:880px){
+      .content{grid-template-columns:1fr}
+      .side{order:2}
+      .card{order:1}
+    }
+
+    /* small flourish */
+    .sparkle{position:absolute;right:12px;top:12px;font-size:12px;color:#fff;background:rgba(255,255,255,0.12);padding:8px;border-radius:10px}
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <header>
+      <div class="logo">❤</div>
+      <div class="title">
+        <h1>Happy Birthday — <span id="gfName">Your Love</span>!</h1>
+        <p class="lead">A little website I made just for her. Open the surprise when you're ready ✨</p>
+      </div>
+      <div class="sparkle">🎉</div>
+    </header>
+
+    <div class="content">
+      <div class="card">
+        <div class="cake" aria-hidden="true">
+          <div class="candles">
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+          </div>
+        </div>
+
+        <div class="message">
+          <h2 id="headline">Happy Birthday, beautiful!</h2>
+          <p id="shortLine">Wishing you a day filled with love, laughter and cake.</p>
+        </div>
+
+        <div class="reveal">
+          <button class="btn" id="openBtn">Open Surprise 🎁</button>
+          <button class="btn secondary" id="musicToggle">Play Music</button>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div id="photo" class="photo" style="background-image: url('PUT_IMAGE_URL_HERE.jpg')"></div>
+        <div class="note">
+          <strong>Today's plan</strong>
+          <ul>
+            <li>Breakfast in bed</li>
+            <li>Walk in the park</li>
+            <li>Surprise dinner</li>
+          </ul>
+          <p style="margin-top:8px">Tip: replace the photo with one of your favourite pictures of her by updating the <code>PUT_IMAGE_URL_HERE.jpg</code> value in the HTML.</p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- floating hearts / confetti (generated by JS) -->
+
+    <!-- surprise overlay -->
+    <div id="overlay" class="overlay" role="dialog" aria-hidden="true">
+      <div class="surprise">
+        <h2>Surprise!</h2>
+        <p id="surpriseText">You are my sun on cloudy days. Thank you for being you — I love you more than words can say. 💖</p>
+        <div style="margin-top:14px">
+          <button class="btn" id="closeBtn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+      <!-- Replace the src with a link to a hosted MP3 (e.g., an mp3 you upload to Google Drive / S3 and make public) -->
+      <source src="PUT_MUSIC_URL_HERE.mp3" type="audio/mpeg">
+    </audio>
+
+  </div>
+
+  <script>
+    // small utilities
+    const gfNameEl = document.getElementById('gfName');
+    // Customize here: change the default name shown on the page.
+    const gfName = 'Beloved'; // <- replace with her name
+    gfNameEl.textContent = gfName;
+
+    // open surprise overlay
+    const openBtn = document.getElementById('openBtn');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('closeBtn');
+    openBtn.addEventListener('click', ()=>{
+      overlay.classList.add('show');
+      overlay.setAttribute('aria-hidden','false');
+      popConfetti();
+    });
+    closeBtn.addEventListener('click', ()=>{
+      overlay.classList.remove('show');
+      overlay.setAttribute('aria-hidden','true');
+    });
+
+    // music
+    const music = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    let playing=false;
+    musicToggle.addEventListener('click', ()=>{
+      if(!playing){
+        music.play().catch(()=>alert('Unable to play automatically — try clicking again or use a direct link to an mp3'));
+        musicToggle.textContent='Pause Music';
+      } else {
+        music.pause();
+        musicToggle.textContent='Play Music';
+      }
+      playing=!playing;
+    });
+
+    // generate floating hearts/confetti
+    function makeHeart(left){
+      const el = document.createElement('div');
+      el.className='heart';
+      el.style.left = (left ?? (Math.random()*100)) + 'vw';
+      el.style.width = (12 + Math.random()*18) + 'px';
+      el.style.height = (12 + Math.random()*18) + 'px';
+      el.style.backgroundImage = `radial-gradient(circle at 35% 30%, #fff, #ff9db9 20%, #ff4d6d)`;
+      el.style.borderRadius='50% 50% 50% 50% / 60% 60% 40% 40%';
+      el.style.opacity = 0.95;
+      el.style.transform = `translateY(-10vh) rotate(${Math.random()*360}deg)`;
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(), 7000 + Math.random()*3000);
+    }
+    function popConfetti(){
+      for(let i=0;i<30;i++){
+        setTimeout(()=>makeHeart(), i*70);
+      }
+    }
+
+    // small accessibility: close overlay with ESC
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape'){
+        overlay.classList.remove('show');
+        overlay.setAttribute('aria-hidden','true');
+      }
+    });
+
+    // helper: let user download the single file as-is (optional enhancement)
+    // end of script
+  </script>
+</body>
+</html>
